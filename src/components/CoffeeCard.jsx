@@ -14,6 +14,7 @@ const CoffeeCard = ({ handleDelete, coffee }) => {
   const updModalRef = useRef(null);
   //   console.log(modalRef);
   const {
+    _id,
     name,
     chefName,
     supplierName,
@@ -24,12 +25,11 @@ const CoffeeCard = ({ handleDelete, coffee }) => {
   } = coffee;
 
   const handleCoffeeView = () => {
-    if (modalRef.current) {
-      modalRef.current.showModal();
-    }
+    // <CoffeDetails coffee={coffee}></CoffeDetails>
+    // if (modalRef.current) {
+    //   modalRef.current.showModal();
+    // }
   };
-
- 
 
   return (
     <div className="border-2 m-4 p-4 card w-full  bg-base-100  flex flex-row">
@@ -44,16 +44,20 @@ const CoffeeCard = ({ handleDelete, coffee }) => {
           <p>
             <b>Chef:</b> {chefName}
           </p>
-          {/* <p><b>Taste:</b> {taste}</p> */}
+     
           <p>
             <b>Supplier:</b> {supplierName}
           </p>
         </div>
         <div className=" flex flex-col gap-y-4 ml-20">
-          <button onClick={handleCoffeeView} className="btn  bg-[#D2B48C]">
-            {/* <Link to="/viewCoffee"><FaEye /></Link> */}
-            <FaEye className="text-[#FFFFFF]" />
-          </button>
+          <Link to={`/coffee/${ _id}`}>
+            <button onClick={handleCoffeeView} className="btn  bg-[#D2B48C]">
+              {/* <Link to="/viewCoffee"> */}
+              <FaEye className="text-[#FFFFFF]" />
+              
+              {/* </Link>  */}
+            </button>
+          </Link>
           <button className="btn  bg-[#3C393B]">
             {/* <button onClick={()=>handleUpdate(coffee._id)} className="btn btn-outline"> */}
             <Link to="/editCoffee">
@@ -64,15 +68,15 @@ const CoffeeCard = ({ handleDelete, coffee }) => {
             onClick={() => handleDelete(coffee._id)}
             className="btn  bg-[#EA4744]"
           >
-            {/* <Link to="/deleteCoffee"> */}
+         
 
             <ImBin className="text-[#FFFFFF]" />
-            {/* </Link> */}
+      
           </button>
         </div>
       </div>
 
-      <CoffeDetails modalRef={modalRef} coffee={coffee}></CoffeDetails>
+      {/* <CoffeDetails modalRef={modalRef} coffee={coffee}></CoffeDetails> */}
       {/* <UpdateCoffee updModalRef={updModalRef} coffee={coffee}></UpdateCoffee> */}
     </div>
   );
