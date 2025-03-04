@@ -58,20 +58,17 @@ const CoffeeCard = ({ handleDelete, coffee }) => {
               {/* </Link>  */}
             </button>
           </Link>
+            <Link to={`/coffee/edit/${_id}`}>
           <button className="btn  bg-[#3C393B]">
             {/* <button onClick={()=>handleUpdate(coffee._id)} className="btn btn-outline"> */}
-            <Link to="/editCoffee">
               <FaPencil className="text-[#FFFFFF]" />
-            </Link>
           </button>
+            </Link>
           <button
             onClick={() => handleDelete(coffee._id)}
             className="btn  bg-[#EA4744]"
           >
-         
-
             <ImBin className="text-[#FFFFFF]" />
-      
           </button>
         </div>
       </div>
