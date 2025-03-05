@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import Footer from "./Footer";
+import NavBar from "./NavBar";
 
 const Root = () => {
   return (
@@ -15,6 +16,8 @@ const Root = () => {
         <button className="btn-outline border-2 border-teal-500 p-2 rounded-lg">Add coffee</button>
         </Link>
         </nav>
+
+        <NavBar></NavBar>
       </header>
       <main className="flex flex-wrap">
         <Outlet></Outlet>

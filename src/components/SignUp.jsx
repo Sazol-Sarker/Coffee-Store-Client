@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import NavBar from "./NavBar";
 
 const SignUp = () => {
   // Access AuthContext
@@ -14,14 +15,17 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    // user
-    const user = { name, email, password };
-    console.log("SIGNUP=>", user);
-
+    const user={name,email}
+    
     // Creating user with FIREBASE
     registerUser(email, password)
-      .then((result) => {
-        console.log("REGISTER=> ", result.user);
+    .then((result) => {
+      console.log("REGISTER=> ", result.user);
+      const newUserData=result.user
+      console.log("SIGNUP in firebase done=>", user);
+      // user
+      const { creationTime,lastSignInTime}=newUserData.metadata
+      const newUser = {...user,creationTime, lastSignInTime};
         // showing toast
         const Toast = Swal.mixin({
           toast: true,
@@ -47,7 +51,7 @@ const SignUp = () => {
           headers: {
             "content-type": "application/json",
           },
-          body: JSON.stringify(user),
+          body: JSON.stringify(newUser),
         })
           .then((res) => res.json())
           .then((data) => {
@@ -76,6 +80,7 @@ const SignUp = () => {
   };
   return (
     <div className="w-8/12 mx-auto">
+      <NavBar></NavBar>
       <div className=" w-full mx-auto bg-base-200 rounded-md my-5">
         <div className="flex flex-col items-center gap-y-5">
           <div className="text-center lg:text-left">

@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, deleteUser } from "firebase/auth";
 import { createContext, useState } from "react";
 import auth from './../firebase/firebase.init';
 
@@ -8,12 +8,17 @@ const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null)
     const [loading,setLoading]=useState(true)
 
+    // register
     const registerUser=(email,password)=>{
             setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password);
     }
 
-
+    // delete
+    const deleteUserAccount=()=>{
+       setLoading(true)
+        return deleteUser(auth.currentUser)
+    }
 
     // PASS everything for AUTHENTICATION 
     const authInfo={
@@ -22,6 +27,7 @@ const AuthProvider = ({children}) => {
         user,
         setUser,
         registerUser,
+        deleteUserAccount
 
     }
 
