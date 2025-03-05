@@ -1,11 +1,11 @@
-import { createUserWithEmailAndPassword, deleteUser } from "firebase/auth";
+import { createUserWithEmailAndPassword, deleteUser, signInWithEmailAndPassword } from "firebase/auth";
 import { createContext, useState } from "react";
 import auth from './../firebase/firebase.init';
 
 export const AuthContext=createContext(null)
 
 const AuthProvider = ({children}) => {
-    const [user,setUser]=useState(null)
+    const [users,setUsers]=useState(null)
     const [loading,setLoading]=useState(true)
 
     // register
@@ -14,20 +14,26 @@ const AuthProvider = ({children}) => {
         return createUserWithEmailAndPassword(auth,email,password);
     }
 
-    // delete
+    // delete: incomplete-> need admin privilege?
     const deleteUserAccount=()=>{
        setLoading(true)
         return deleteUser(auth.currentUser)
     }
 
+    //sign in
+    const loginUser=(email,password)=>{
+        return signInWithEmailAndPassword(auth,email,password)
+    } 
+
     // PASS everything for AUTHENTICATION 
     const authInfo={
         name:"PASA",
         email:"Pasa@paki.com",
-        user,
-        setUser,
+        users,
+        setUsers,
         registerUser,
-        deleteUserAccount
+        deleteUserAccount,
+        loginUser
 
     }
 

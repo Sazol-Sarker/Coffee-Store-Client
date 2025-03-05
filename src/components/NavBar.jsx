@@ -1,23 +1,25 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const links = (
     <>
       <li>
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="">Auth</Link>
-        <ul className="p-2">
-          <li>
-            
-            <Link to="/auth">Register</Link>
-          </li>
-          <li>
-            
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
+        <Link className="mb-5" onClick={() => setIsMenuOpen(!isMenuOpen)} to="">Auth</Link>
+         
+          <ul className={`absolute mt-7 py-2 px-0 z-1 ${isMenuOpen?"block":"hidden"}`}>
+            <li>
+              <Link to="/auth">Register</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>
+        
       </li>
       <li>
         <Link to="/users">User List</Link>
@@ -48,20 +50,21 @@ const NavBar = () => {
             </div>
             <ul
               tabIndex={0}
+             
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-             {links}
+              {links}
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">CoffeeHub</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-           {links}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="" className="btn">Sign-out</Link>
+          <Link to="" className="btn">
+            Sign-out
+          </Link>
         </div>
       </div>
     </div>

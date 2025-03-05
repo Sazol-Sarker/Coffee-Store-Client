@@ -1,4 +1,5 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateCoffee = () => {
   const navigate = useNavigate();
@@ -50,7 +51,21 @@ const UpdateCoffee = () => {
       body: JSON.stringify(updCoffee),
     })
       .then((res) => res.json())
-      .then((data) => console.log("UPDATE Response from MongoDB=>", data));
+      .then((data) => {
+        console.log("UPDATE Response from MongoDB=>", data)
+        if(data.modifiedCount>0)
+        {
+          Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Coffee update successfull!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+
+        navigate('/')
+        }
+      });
   };
 
   return (
