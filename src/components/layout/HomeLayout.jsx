@@ -1,15 +1,14 @@
 import { Link, Outlet, useLoaderData } from "react-router-dom";
 import Footer from "../Footer";
 import CoffeeCard from "../CoffeeCard";
-import { useState } from 'react';
+import { useState } from "react";
 import Swal from "sweetalert2";
 const HomeLayout = () => {
   // load get api data
   const loadedCoffeeData = useLoaderData();
   // hooks
-  const [coffeeList,setCoffeeList]=useState(loadedCoffeeData)
+  const [coffeeList, setCoffeeList] = useState(loadedCoffeeData);
   console.log(loadedCoffeeData);
-
 
   const handleDelete = (id) => {
     console.log("Delete->", id);
@@ -26,7 +25,7 @@ const HomeLayout = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // DELETE API
-        fetch(`http://localhost:5000/coffee/${id}`, {
+        fetch(`https://coffee-store-server-ashy-six.vercel.app/coffee/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -63,11 +62,19 @@ const HomeLayout = () => {
       <main>
         {/* Coffee List */}
         <div className="coffee-list w-10/12 mx-auto">
-          <h2 className="text-center font-semibold text-xl my-5">Coffee List: {loadedCoffeeData.length}</h2>
+          <h2 className="text-center font-semibold text-xl my-5">
+            Coffee List: {loadedCoffeeData.length}
+          </h2>
           <div className="grid grid-cols-2 gap-x-4">
             {/* <div className="grid grid-cols-2 w-1/2 mx-auto "> */}
             {coffeeList.map((coffee) => {
-              return <CoffeeCard key={coffee._id} handleDelete={handleDelete}   coffee={coffee}></CoffeeCard>;
+              return (
+                <CoffeeCard
+                  key={coffee._id}
+                  handleDelete={handleDelete}
+                  coffee={coffee}
+                ></CoffeeCard>
+              );
             })}
           </div>
         </div>

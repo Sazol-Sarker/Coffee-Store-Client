@@ -45,7 +45,7 @@ const UpdateCoffee = () => {
     form.reset();
 
     //   PUT update API
-    fetch(`http://localhost:5000/coffee/${_id}`, {
+    fetch(`https://coffee-store-server-ashy-six.vercel.app/coffee/${_id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updCoffee),

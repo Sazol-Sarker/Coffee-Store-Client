@@ -18,7 +18,7 @@ const SignIn = () => {
         const updUser = { email, lastSignInTime: metadata?.lastSignInTime };
 
         // take metadata of logged in time & update partially in userCollection
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://coffee-store-server-ashy-six.vercel.app/users`, {
           method: "PATCH",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(updUser),

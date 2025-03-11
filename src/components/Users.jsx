@@ -31,7 +31,7 @@ const Users = () => {
           icon: "success",
         });
         // MongoDB delete API
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://coffee-store-server-ashy-six.vercel.app/users/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -45,7 +45,7 @@ const Users = () => {
   };
 //   handleUserUpdate
 const handleUserUpdate=(id)=>{
-    // fetch(`http://localhost:5000/users/${id}/edit`,{
+    // fetch(`https://coffee-store-server-ashy-six.vercel.app/users/${id}/edit`,{
     //     method:'PUT',
     //     headers:{'content-type':'application/json'},
     //     body:JSON.stringify(updUser)

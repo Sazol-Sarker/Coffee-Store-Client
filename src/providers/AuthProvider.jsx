@@ -27,8 +27,6 @@ const AuthProvider = ({children}) => {
 
     // PASS everything for AUTHENTICATION 
     const authInfo={
-        name:"PASA",
-        email:"Pasa@paki.com",
         users,
         setUsers,
         registerUser,

@@ -46,7 +46,7 @@ const SignUp = () => {
         // Create user in MongoDB database: userCollection
 
         // POST API: user
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-ashy-six.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
